@@ -20,11 +20,13 @@ def chat():
     elif 'library' in user_msg:
         reply = "Library timing 8 AM - 6 PM. 2 books 15 days ku eduthukalam."
     elif 'hod' in user_msg:
-        reply = "CSE HOD Dr. Kumar sir, ECE HOD Dr. Priya mam."
+        reply = "AIDS HOD Archana Mam, cyber HOD Priyanka mam."
+    elif 'class adviser' in user_msg:
+        reply = "AIDS A Gowtham sir,AIDS B Archana ma."
     elif 'exam' in user_msg:
         reply = "Internal exam next month. Timetable website la varum."
     elif 'timing' in user_msg or 'time' in user_msg:
-        reply = "College timing 9 AM - 4 PM."
+        reply = "College timing 9:30 AM - 4 PM."
     else:
         reply = "Sorry, athu pathi enakku therila. Timing, admission, fees, hostel, placement, library, HOD, exam pathi kelu."
 
