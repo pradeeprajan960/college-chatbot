@@ -3,200 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>College AI Chatbot</title>
-
+    <title>SKP College AI Chatbot</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #f2f5f9;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .chat-container {
-            width: 420px;
-            height: 650px;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            background: #2563eb;
-            color: white;
-            padding: 22px;
-            text-align: center;
-        }
-
-        .header h2 {
-            margin-bottom: 6px;
-        }
-
-        .header p {
-            font-size: 13px;
-        }
-
-        .chat-box {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .message {
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            max-width: 85%;
-            line-height: 1.4;
-        }
-
-        .bot {
-            background: #e8eefc;
-        }
-
-        .user {
-            background: #2563eb;
-            color: white;
-            margin-left: auto;
-        }
-
-        .input-area {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid #ddd;
-        }
-
-        .input-area input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            outline: none;
-        }
-
-        .input-area button {
-            margin-left: 10px;
-            padding: 12px 18px;
-            border: none;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            cursor: pointer;
-        }
-
-        .input-area button:hover {
-            background: #1d4ed8;
-        }
+        body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .chat-container { width: 400px; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+        .header { background: #2563eb; color: white; padding: 15px; text-align: center; }
+        .header h2 { margin: 0; font-size: 20px; }
+        .header p { margin: 5px 0 0; font-size: 13px; opacity: 0.9; }
+        .chat-box { height: 400px; padding: 15px; overflow-y: auto; background: #fafafa; }
+        .message { padding: 10px 12px; border-radius: 10px; margin: 8px 0; max-width: 80%; font-size: 14px; }
+        .message.bot { background: #e5e7eb; color: #111; }
+        .message.user { background: #2563eb; color: white; margin-left: auto; }
+        .input-area { display: flex; padding: 10px; border-top: 1px solid #ddd; background: white; }
+        .input-area input { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #ccc; outline: none; }
+        .input-area button { background: #2563eb; color: white; border: none; padding: 0 18px; margin-left: 8px; border-radius: 10px; cursor: pointer; }
+        .input-area button:hover { background: #1d4ed8; }
     </style>
 </head>
-
 <body>
 
 <div class="chat-container">
-
     <div class="header">
-        <h2>🎓 College AI Chatbot</h2>
+        <h2>SKP College AI Chatbot</h2>
         <p>Ask me anything about your college</p>
     </div>
 
     <div class="chat-box" id="chatBox">
-
         <div class="message bot">
-            🤖 Hello! I'm your College AI Assistant.<br><br>
+            👋 Hello! I'm your College AI Assistant.<br><br>
             Ask me about college timing, library, exams, HOD or fees.
         </div>
-
     </div>
 
     <div class="input-area">
-
-        <input
-            type="text"
-            id="userInput"
-            placeholder="Ask your question..."
-            onkeydown="handleKey(event)"
-        >
-
+        <input type="text" id="userInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendMessage()">
         <button onclick="sendMessage()">Send</button>
-
     </div>
-
 </div>
 
 <script>
+    async function sendMessage() {
+        let input = document.getElementById("userInput");
+        let chatBox = document.getElementById("chatBox");
+        let text = input.value.trim();
+        if (!text) return;
 
-function handleKey(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-}
-
-async function sendMessage() {
-
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-
-    if (message === "") {
-        return;
-    }
-
-    const chatBox = document.getElementById("chatBox");
-
-    // User message
-    const userMessage = document.createElement("div");
-    userMessage.className = "message user";
-    userMessage.innerText = message;
-
-    chatBox.appendChild(userMessage);
-
-    input.value = "";
-
-    // Send message to Flask
-    try {
-
-        const response = await fetch("/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: message
-            })
-        });
-
-        const data = await response.json();
-
-        // Bot message
-        const botMessage = document.createElement("div");
-        botMessage.className = "message bot";
-        botMessage.innerText = "🤖 " + data.reply;
-
-        chatBox.appendChild(botMessage);
-
+        chatBox.innerHTML += `<div class="message user">${text}</div>`;
+        input.value = "";
         chatBox.scrollTop = chatBox.scrollHeight;
 
-    } catch (error) {
-
-        const errorMessage = document.createElement("div");
-        errorMessage.className = "message bot";
-        errorMessage.innerText = "❌ Sorry, something went wrong.";
-
-        chatBox.appendChild(errorMessage);
+        let response = await fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text })
+        });
+        let data = await response.json();
+        chatBox.innerHTML += `<div class="message bot">${data.reply}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
-}
-
 </script>
 
 </body>
