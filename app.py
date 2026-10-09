@@ -26,13 +26,10 @@ def chat():
         reply = "Cyber HOD Priyanka Mam."
     else:
         reply = "AIDS HOD Archana Mam, Cyber HOD Priyanka Mam."
-
 elif 'aids a' in user_msg and 'adviser' in user_msg:
-    reply = "AIDS A class adviser Gowtham Sir."
-
+    reply = "Gowtham Sir."
 elif 'aids b' in user_msg and 'adviser' in user_msg:
-    reply = "AIDS B class adviser Archana Mam."
-
+    reply = "Archana Mam."
 elif 'class adviser' in user_msg:
     reply = "AIDS A - Gowtham Sir, AIDS B - Archana Mam."
     elif 'college Principal' in user_msg:
