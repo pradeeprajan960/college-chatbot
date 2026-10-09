@@ -1,0 +1,11 @@
+# College Chatbot - Tanglish Support
+
+Flask la panna simple college chatbot. Tanglish la kettalum puriyum.
+
+Run panna:
+pip install -r requirements.txt
+python app.py
+
+Features:
+- Vanakam, fees evlo, hostel eruka/erukka/iruka ellame work aagum
+- Fees, Hostel, Placement, Bus, Library pathi reply varum
