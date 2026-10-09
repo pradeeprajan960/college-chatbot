@@ -20,11 +20,21 @@ def chat():
     elif 'library' in user_msg:
         reply = "Library timing 11 AM - 3 PM. 2 books 15 days ku eduthukalam."
     elif 'hod' in user_msg:
-        reply = "AIDS HOD Archana Mam,
-        reply = "cyber HOD Priyanka mam."
-    elif 'class adviser' in user_msg:
-        reply = "AIDS A Gowtham sir,
-        reply = "AIDS B Archana mam."
+    if 'AIDS' in user_msg:
+        reply = "AIDS HOD Archana Mam."
+    elif 'Cyber' in user_msg:
+        reply = "Cyber HOD Priyanka Mam."
+    else:
+        reply = "AIDS HOD Archana Mam, Cyber HOD Priyanka Mam."
+
+elif 'AIDS A' in user_msg and 'adviser' in user_msg:
+    reply = "AIDS A class adviser Gowtham Sir."
+
+elif 'AIDS B' in user_msg and 'adviser' in user_msg:
+    reply = "AIDS B class adviser Archana Mam."
+
+elif 'class adviser' in user_msg:
+    reply = "AIDS A - Gowtham Sir, AIDS B - Archana Mam."
     elif 'college Principal' in user_msg:
         reply = "baskaran sir." 
     elif 'exam' in user_msg:
