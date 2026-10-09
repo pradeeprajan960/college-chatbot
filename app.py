@@ -19,19 +19,19 @@ def chat():
         reply = "Hostel iruku da! Boys ku separate, girls ku separate. Fees 70k per year, food included."
     elif 'library' in user_msg:
         reply = "Library timing 11 AM - 3 PM. 2 books 15 days ku eduthukalam."
-   elif 'hod' in user_msg:
-    if 'aids' in user_msg:
-        reply = "AIDS HOD Archana Mam."
-    elif 'cyber' in user_msg:
-        reply = "Cyber HOD Priyanka Mam."
-    else:
-        reply = "AIDS HOD Archana Mam, Cyber HOD Priyanka Mam."
-elif 'aids a' in user_msg and 'adviser' in user_msg:
-    reply = "Gowtham Sir."
-elif 'aids b' in user_msg and 'adviser' in user_msg:
-    reply = "Archana Mam."
-elif 'class adviser' in user_msg:
-    reply = "AIDS A - Gowtham Sir, AIDS B - Archana Mam."
+    elif 'hod' in user_msg:
+        if 'aids' in user_msg:
+            reply = "AIDS HOD Archana Mam."
+        elif 'cyber' in user_msg:
+            reply = "Cyber HOD Priyanka Mam."
+        else:
+            reply = "AIDS HOD Archana Mam, Cyber HOD Priyanka Mam."
+    elif 'aids a' in user_msg and 'adviser' in user_msg:
+        reply = "Gowtham Sir."
+    elif 'aids b' in user_msg and 'adviser' in user_msg:
+        reply = "Archana Mam."
+    elif 'class adviser' in user_msg:
+        reply = "AIDS A - Gowtham Sir, AIDS B - Archana Mam."
     elif 'college Principal' in user_msg:
         reply = "Baskaran sir." 
     elif 'exam' in user_msg:
